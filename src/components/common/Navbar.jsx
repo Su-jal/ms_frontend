@@ -21,6 +21,7 @@ const Navbar = () => {
         try {
             setLoading(true);
             const res = await fetchCourseCategories();
+            console.log(res); // For debugging the structure of the response
             setSubLinks(res);
         } catch (error) {
             console.log("Could not fetch the category list = ", error);
@@ -63,9 +64,13 @@ const Navbar = () => {
                             Catalog
                         </Dropdown.Toggle>
                         <Dropdown.Menu>
-                            {loading ? (<p className="text-center">Loading...</p>) : subLinks.length ? (
+                            {loading ? (
+                                <p className="text-center">Loading...</p>
+                            ) : subLinks.length ? (
                                 subLinks.map((subLink, index) => (
-                                    <Dropdown.Item key={index} href={`/catalog/${subLink.name.split(" ").join("-").toLowerCase()}`}>{subLink?.name}</Dropdown.Item>
+                                    <Dropdown.Item key={index} href={`/catalog/${subLink?.name ? subLink.name.split(" ").join("-").toLowerCase() : ""}`}>
+                                        {subLink?.name}
+                                    </Dropdown.Item>
                                 ))
                             ) : (
                                 <p className="text-black p-2 border-richblack-900 rounded-md border-[1px]">Nothing found</p>

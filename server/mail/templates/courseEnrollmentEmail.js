@@ -67,7 +67,7 @@ exports.courseEnrollmentEmail = (courseName, name) => {
     
     <body>
         <div class="container">
-            <a href="https://M&S-edtech-project.vercel.app"><img class="logo" src="https://i.ibb.co/7Xyj3PC/logo.png"
+            <a href="https://M&S-edtech-project.vercel.app"><img class="logo" src="https://i.postimg.cc/tC5Y3Xrg/Logo-Full-Light.png"
                     alt="M&S Logo"></a>
             <div class="message">Course Registration Confirmation</div>
             <div class="body">

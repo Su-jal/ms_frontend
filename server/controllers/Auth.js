@@ -76,8 +76,8 @@ exports.signup = async (req, res) => {
 		const hashedPassword = await bcrypt.hash(password, 10);
 
 		// Create the user
-		let approved = "";
-		approved === "Instructor" ? (approved = false) : (approved = true);
+		let approved = accountType === "Instructor" ? false : true;
+
 
 		// Create the Additional Profile For User
 		const profileDetails = await Profile.create({
@@ -86,6 +86,7 @@ exports.signup = async (req, res) => {
 			about: null,
 			contactNumber: null,
 		});
+		console.log("Profile created:", profileDetails);
 		const user = await User.create({
 			firstName,
 			lastName,
@@ -97,6 +98,7 @@ exports.signup = async (req, res) => {
 			additionalDetails: profileDetails._id,
 			image: `https://api.dicebear.com/5.x/initials/svg?seed=${firstName} ${lastName}`,
 		});
+		console.log("User created:", user);
 
 		return res.status(200).json({
 			success: true,
